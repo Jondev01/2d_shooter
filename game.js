@@ -5,7 +5,7 @@ class Game{
     this.enemyRate = 0.01;
     this.ai = true;
     if(this.ai){
-      this.population = new Population(50);
+      this.population = new Population(200);
     }
   }
 

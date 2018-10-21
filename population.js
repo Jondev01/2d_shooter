@@ -19,14 +19,14 @@ class Population{
   }
 
   show(){
-    /*for(let player of this.players){
+    for(let player of this.players){
       player.show();
-    }*/
-    this.players[0].show();
+    }
+    //this.players[0].show();
     fill(255);
-    text("generation: " + this.generation, 10, 30);
-    text("score: " + this.players[0].score, 10, 50);
-    text("highscore: " + this.highscore, 10, 70);
+    text("generation: " + this.generation, 10, 80);
+    text("score: " + this.players[0].score, 10, 100);
+    text("highscore: " + this.highscore, 10, 120);
   }
 
   evolve(){

@@ -14,8 +14,8 @@ class Player{
     this.ai = ai;
     if(ai){
       this.enemies = [new Enemy()];
-      this.brain = new NeuralNetwork(1,2,3);
-      this.enemyRate = 0.001;
+      this.brain = new NeuralNetwork(1,2,2);
+      this.enemyRate = 0.01;
       this.fitness = 0;
       this.dead = false;
       this.shootTimer = 0;
@@ -79,11 +79,11 @@ class Player{
   adjustToScreen(){
     if(this.pos.x+this.w/2>width){
       this.pos.x = width-this.w/2;
-      this.dead = true;
+      //this.dead = true;
     }
     else if(this.pos.x-this.w/2 <0){
       this.pos.x = this.w/2;
-      this.dead = true;
+      //this.dead = true;
     }
   }
   shoot(){
@@ -113,9 +113,10 @@ class Player{
     this.right = false;
     if(output[0]>0.5)
       this.left = true;
-    if(output[1]>0.5)
+    else {
       this.right = true;
-    if(output[2]>0.5)
+    }
+    if(output[1]>0.5)
       this.shoot();
   }
 
@@ -171,9 +172,12 @@ class Player{
   }
 
   enemiesWin(){
-    for(let enemy of this.enemies){
-      if(enemy.offScreen())
+    for(let i=this.enemies.length-1; i>=0; i--){
+      let enemy = this.enemies[i];
+      if(enemy.offScreen()){
         this.dead = true;
+        this.enemies.splice(i,1);
+      }
     }
   }
 
