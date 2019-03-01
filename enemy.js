@@ -5,9 +5,9 @@ class Enemy{
     this.pos.x = random(this.r, width-this.r);
     this.pos.y = 0;
     this.dead = false;
-    this.maxSpeed = 1;
+    this.maxSpeed = 2;
     this.vel = createVector(0,0);
-    this.acc = createVector(0,.1);
+    this.acc = createVector(0,0.1);
   }
 
   show(){

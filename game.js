@@ -1,21 +1,22 @@
 class Game{
-  constructor(){
+  constructor(ai){
     this.player = new Player(100,height-40);
     this.enemies = [];
-    this.enemyRate = 0.01;
-    this.ai = true;
+    this.initialEnemyRate = 0.01;
+    this.enemyRate = this.initialEnemyRate;
+    this.enemyGain = 0.002;
+    this.ai = ai;
+    Game.curHighscore = 0;
     if(this.ai){
       this.population = new Population(200);
     }
   }
 
   static highscore(value){
-    if(value === undefined){
-      if(this.value ===undefined)
-        this.value = 0;
-      return this.value;
+    if(value == undefined){
+      return this.curHighscore;
     }
-    this.value = value;
+    Game.curHighscore = value;
   }
 
   keyPressed(keyCode){
@@ -46,7 +47,7 @@ class Game{
         enemy.update();
       this.enemiesHit();
       this.enemiesWin();
-    //  this.enemyRate = 0.01+0.001*floor(this.player.score/10)
+      this.enemyRate = this.initialEnemyRate+this.enemyGain*floor(this.player.score/10)
     }
   else{
     for(let i=0; i<speedSlider.value(); i++){

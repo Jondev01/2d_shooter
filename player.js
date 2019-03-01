@@ -32,6 +32,9 @@ class Player{
       this.think();
       for(let enemy of this.enemies)
         enemy.update();
+      if(this.score>70+Game.highscore()){
+        this.dead = true;
+      } 
     }
     if(!this.dead){
       if(this.left){
@@ -51,7 +54,7 @@ class Player{
       this.acc.mult(0);
       this.adjustToScreen();
     }
-    if(this.ai){
+    if(this.ai && !this.dead){
       this.enemiesHit();
       this.enemiesWin();
     }

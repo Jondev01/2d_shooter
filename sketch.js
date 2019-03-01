@@ -2,6 +2,8 @@ let height = 500;
 let width = 500;
 let game;
 let speedSlider;
+let playSelfButton;
+let aiButton;
 
 function keyPressed(){
   game.keyPressed(keyCode);
@@ -12,9 +14,13 @@ function keyReleased(){
 }
 
 function setup() {
+  playSelfButton = createButton('play yourself');
+  aiButton = createButton('use machine learning');
+  playSelfButton.mousePressed(() => restart(false));
+  aiButton.mousePressed(() => restart(true));
   createCanvas(width, height);
   game = new Game();
-  speedSlider = createSlider(1,20,1)
+  speedSlider = createSlider(1,20,1);
 }
 
 function draw() {
@@ -23,6 +29,7 @@ function draw() {
   game.show();
 }
 
-function restart(){
-  game = new Game();
+function restart(ai){
+  game = new Game(ai);
 }
+
