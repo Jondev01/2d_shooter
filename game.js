@@ -6,7 +6,6 @@ class Game{
     this.enemyRate = this.initialEnemyRate;
     this.enemyGain = 0.002;
     this.ai = ai;
-    Game.curHighscore = 0;
     if(this.ai){
       this.population = new Population(200);
     }
@@ -14,9 +13,9 @@ class Game{
 
   static highscore(value){
     if(value == undefined){
-      return this.curHighscore;
+      return this.curHighscore || 0;
     }
-    Game.curHighscore = value;
+    this.curHighscore = value;
   }
 
   keyPressed(keyCode){
